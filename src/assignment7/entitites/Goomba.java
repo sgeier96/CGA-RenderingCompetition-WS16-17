@@ -37,7 +37,7 @@ public class Goomba {
         texture.bind(GL_TEXTURE0);
         material.bind(shader);
 
-        Matrix4f model_matrix = new Matrix4f().translate(0.5f, -1.5f, -(size/2 + 10)).scale(0.8f);
+        Matrix4f model_matrix = new Matrix4f().translate(0.5f, -8f, -(size/2 + 10)).scale(0.8f);
         shader.setUniformMat4f("model_matrix", model_matrix);
         vao.render();
     }

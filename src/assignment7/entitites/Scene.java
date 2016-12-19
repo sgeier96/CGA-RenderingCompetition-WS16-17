@@ -14,14 +14,9 @@ import static org.lwjgl.opengl.GL13.GL_TEXTURE1;
  */
 
 public class Scene {
-    private CornellBox box;
-    private Table table;
-    private Statue statue;
     private SmallStatue smallStatue;
     private Goomba goomba;
-    private Grave grave;
-    private Boss boss;
-    private Starcruiser starcruiser;
+   // private Starcruiser starcruiser;
     private float fov, nplane, fplane;
     private Matrix4f projection_matrix;
     private FlyThroughCamera camera;
@@ -36,21 +31,16 @@ public class Scene {
     	//Die alten müssen noch rausgenommen werden. 
     	//Hier werden die Objekte erstellt.
         size = 30;
-        box = new CornellBox(size);
-        table = new Table();
-        statue = new Statue();
         smallStatue = new SmallStatue();
         goomba = new Goomba();
-        grave = new Grave();
-        boss = new Boss();
-        starcruiser = new Starcruiser();
+        //starcruiser = new Starcruiser();
 
         //setup camera
         projection_matrix = new Matrix4f();
         camera = new FlyThroughCamera();
         fov = 40;
         nplane = 0.01f;
-        fplane = 2000;
+        fplane = 800;
 
         //setup shader
         shader_mode = 0;
@@ -95,14 +85,12 @@ public class Scene {
         model_shaderprograms[shader_mode].setUniformMat4f("projection_matrix", projection_matrix);
         model_shaderprograms[shader_mode].setUniformMat4f("view_matrix", camera.getView_matrix());
 
-        box.render(cube_shaderprograms[shader_mode]);
-        table.render(model_shaderprograms[shader_mode], size);
-        statue.render(model_shaderprograms[shader_mode], size);
+        //Stellvertretend für die Kometen
         smallStatue.render(model_shaderprograms[shader_mode]);
+        updateAsteroids();
+        //Stellvertretend für das Raumschiff
         goomba.render(model_shaderprograms[shader_mode], size);
-        grave.render(model_shaderprograms[shader_mode], size);
-        boss.render(model_shaderprograms[shader_mode], size);
-        starcruiser.render(model_shaderprograms[shader_mode], size);
+       // starcruiser.render(model_shaderprograms[shader_mode], size);
     }
 
     public void updatePerspective(int width, int height){
@@ -111,6 +99,10 @@ public class Scene {
         model_shaderprograms[1].setUniform1f("width", width);
         model_shaderprograms[1].setUniform1f("height", height);
         projection_matrix = new Matrix4f().setPerspective((float)Math.toRadians(fov), (float)width/height, nplane, fplane);
+    }
+    
+    public void updateAsteroids(){
+    	
     }
 
     public Camera getActiveCamera(){

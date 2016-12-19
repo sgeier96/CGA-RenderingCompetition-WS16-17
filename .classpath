@@ -5,8 +5,8 @@
 	<classpathentry kind="lib" path="libs/JOML/joml-1.8.4.jar"/>
 	<classpathentry kind="lib" path="libs/LWJGL/jar/lwjgl.jar" sourcepath="libs/LWJGL/jar/src.zip">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/CGA%20Rendering%20Competition/libs/LWJGL/doc/javadoc.zip!/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="CGA Rendering Competition/libs/LWJGL/native"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/CGA-RenderingCompetition-WS16-17/libs/LWJGL/doc/javadoc.zip!/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="CGA-RenderingCompetition-WS16-17/libs/LWJGL/native"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

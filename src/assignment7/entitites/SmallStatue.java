@@ -44,12 +44,13 @@ public class SmallStatue {
                 texture2.bind(GL_TEXTURE0);
             }
 
-            Matrix4f model_matrix = new Matrix4f().translate(23.5f, 0.5f, i*(-10)).rotateY((float)Math.toRadians(90)).scale(2f);
+            //Matrix4f model_matrix = new Matrix4f().translate(23.5f, 0.5f, i*(-10)).rotateY((float)Math.toRadians(90)).scale(2f);
+            Matrix4f model_matrix = new Matrix4f().translate(0, 0, -1000f).scale(4f);
             shader.setUniformMat4f("model_matrix", model_matrix);
             vao.render();
-            model_matrix = new Matrix4f().translate(-22.5f, 0.5f, i*(-10)).rotateY((float)Math.toRadians(-90)).scale(2f);
-            shader.setUniformMat4f("model_matrix", model_matrix);
-            vao.render();
+            //model_matrix = new Matrix4f().translate(-22.5f, 0.5f, i*(-10)).rotateY((float)Math.toRadians(-90)).scale(2f);
+//            shader.setUniformMat4f("model_matrix", model_matrix);
+//            vao.render();
         }
     }
 }
