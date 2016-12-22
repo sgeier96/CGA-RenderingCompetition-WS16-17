@@ -83,15 +83,12 @@ public class Scene {
         model_shaderprograms[shader_mode].setUniformMat4f("projection_matrix", projection_matrix);
         model_shaderprograms[shader_mode].setUniformMat4f("view_matrix", camera.getView_matrix());
 
-        
         //Stellvertretend für das Raumschiff
         goomba.render(model_shaderprograms[shader_mode], size);
       //Stellvertretend für die Kometen
       //mehrere Kometen werden geladen
-        for(int cometsDisplayed = 0; cometsDisplayed < 5; cometsDisplayed++){
         	//to-do Kometen werden mit Zeitabstand zueinander gerendert
-            smallStatue.render(model_shaderprograms[shader_mode]);
-        }
+        	smallStatue.render(model_shaderprograms[shader_mode]);
     }
 
     public void updatePerspective(int width, int height){
