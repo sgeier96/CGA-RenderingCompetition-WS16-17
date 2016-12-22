@@ -26,15 +26,13 @@ public class Scene {
     private int shader_mode;
     private Shaderprogram[] cube_shaderprograms, model_shaderprograms;
 
+    
     public Scene(){
         //setup models
-    	//Die alten müssen noch rausgenommen werden. 
-    	//Hier werden die Objekte erstellt.
         size = 30;
         smallStatue = new SmallStatue();
         goomba = new Goomba();
-        //starcruiser = new Starcruiser();
-
+        
         //setup camera
         projection_matrix = new Matrix4f();
         camera = new FlyThroughCamera();
@@ -85,12 +83,15 @@ public class Scene {
         model_shaderprograms[shader_mode].setUniformMat4f("projection_matrix", projection_matrix);
         model_shaderprograms[shader_mode].setUniformMat4f("view_matrix", camera.getView_matrix());
 
-        //Stellvertretend für die Kometen
-        smallStatue.render(model_shaderprograms[shader_mode]);
-        updateAsteroids();
+        
         //Stellvertretend für das Raumschiff
         goomba.render(model_shaderprograms[shader_mode], size);
-       // starcruiser.render(model_shaderprograms[shader_mode], size);
+      //Stellvertretend für die Kometen
+      //mehrere Kometen werden geladen
+        for(int cometsDisplayed = 0; cometsDisplayed < 5; cometsDisplayed++){
+        	//to-do Kometen werden mit Zeitabstand zueinander gerendert
+            smallStatue.render(model_shaderprograms[shader_mode]);
+        }
     }
 
     public void updatePerspective(int width, int height){
@@ -100,10 +101,7 @@ public class Scene {
         model_shaderprograms[1].setUniform1f("height", height);
         projection_matrix = new Matrix4f().setPerspective((float)Math.toRadians(fov), (float)width/height, nplane, fplane);
     }
-    
-    public void updateAsteroids(){
-    	
-    }
+
 
     public Camera getActiveCamera(){
         return camera;
