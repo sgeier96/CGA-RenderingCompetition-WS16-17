@@ -34,22 +34,22 @@ public class FlyThroughCamera extends Camera {
 
     @Override
     public void moveCameraUpwards() {
-        downAngle -= (float) Math.toRadians(3);
+        cameraPosition.add(0,1,0);
     }
 
     @Override
     public void moveCameraDownwards() {
-        downAngle += (float) Math.toRadians(3);
+    	cameraPosition.add(0,-1,0);
     }
 
     @Override
     public void turnCameraRight() {
-        sideAngle -= (float) Math.toRadians(3);
+    	cameraPosition.add(1,0,0);
     }
 
     @Override
     public void turnCameraLeft() {
-        sideAngle += (float) Math.toRadians(3);
+    	cameraPosition.add(-1,0,0);
     }
 
     @Override
