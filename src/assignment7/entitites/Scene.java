@@ -9,6 +9,8 @@ import org.joml.Vector3f;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE1;
 
+import java.util.ArrayList;
+
 /**
  * Created by Dennis Dubbert on 10.10.16.
  */
@@ -32,6 +34,7 @@ public class Scene {
         size = 30;
         smallStatue = new SmallStatue();
         goomba = new Goomba();
+
         
         //setup camera
         projection_matrix = new Matrix4f();
@@ -88,7 +91,9 @@ public class Scene {
       //Stellvertretend für die Kometen
       //mehrere Kometen werden geladen
         	//to-do Kometen werden mit Zeitabstand zueinander gerendert
+        
         	smallStatue.render(model_shaderprograms[shader_mode]);
+        
     }
 
     public void updatePerspective(int width, int height){
