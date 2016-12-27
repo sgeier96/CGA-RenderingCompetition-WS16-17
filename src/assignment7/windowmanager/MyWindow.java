@@ -23,7 +23,10 @@ public class MyWindow extends Window {
     // Gets called once after the window is created //
     // e.g. for setting up the scene and OpenGL parameters (e.g. glClearColor,...) //
     public void onInit(){
-        glClearColor(1, 1, 1, 1);
+    	/*extra auf 0.01f gesetzt, da die Sterne selbst noch licht abgeben und damit soll das ganze vereinfacht werden.
+    	 *Möglicherweise muss der Wert sogar noch erhöht werden.
+    	 */
+        glClearColor(0.01f, 0.01f, 0.01f, 1);
         glDisable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
         glViewport(0,0,width,height);
@@ -73,18 +76,26 @@ public class MyWindow extends Window {
 
         if(pressedKey == GLFW_KEY_W){
             scene.getActiveCamera().moveCameraUpwards();
+            scene.getSpacecruiser().moveSpacecruiserUpwards();
+            moveWindowPos(0, -5);
         }
 
         if(pressedKey == GLFW_KEY_S){
             scene.getActiveCamera().moveCameraDownwards();
+            scene.getSpacecruiser().moveSpacecruiserDownwards();
+            moveWindowPos(0, 5);
         }
 
         if(pressedKey == GLFW_KEY_A){
             scene.getActiveCamera().turnCameraLeft();
+            scene.getSpacecruiser().moveSpacecruiserLeft();
+            moveWindowPos(-5, 0);
         }
 
         if(pressedKey == GLFW_KEY_D){
             scene.getActiveCamera().turnCameraRight();
+            scene.getSpacecruiser().moveSpacecruiserRight();
+            moveWindowPos(5, 0);
         }
 
         if(pressedKey == GLFW_KEY_N){

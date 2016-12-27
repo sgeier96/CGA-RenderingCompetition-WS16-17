@@ -12,7 +12,6 @@ public class MainGameLoop7 {
 
 		// Setup window
 		new MyWindow(640, 480);
-
 	}
 
 }

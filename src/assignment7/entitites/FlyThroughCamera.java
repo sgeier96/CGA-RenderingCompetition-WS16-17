@@ -34,22 +34,30 @@ public class FlyThroughCamera extends Camera {
 
     @Override
     public void moveCameraUpwards() {
-        cameraPosition.add(0,1,0);
+        cameraPosition.add(0,5,0);
     }
 
     @Override
     public void moveCameraDownwards() {
-    	cameraPosition.add(0,-1,0);
+    	cameraPosition.add(0,-5,0);
     }
 
     @Override
     public void turnCameraRight() {
-    	cameraPosition.add(1,0,0);
+    	for(int i = 0; i < 5; i++){
+        	cameraPosition.add(1,0,0);
+        	}
     }
 
     @Override
     public void turnCameraLeft() {
+    	/*
+    	 * Testweise eingebaut. So Ruckelfreier?
+    	 * (anstatt: cameraPosition.add(-5,0,0);)
+    	 */
+    	for(int i = 0; i < 5; i++){
     	cameraPosition.add(-1,0,0);
+    	}
     }
 
     @Override

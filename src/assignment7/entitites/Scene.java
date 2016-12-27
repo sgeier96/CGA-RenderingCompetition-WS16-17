@@ -101,6 +101,9 @@ public class Scene {
 		projection_matrix = new Matrix4f().setPerspective((float)Math.toRadians(fov), (float)width/height, nplane, fplane);
 	}
 
+	public Goomba getSpacecruiser(){
+		return goomba;
+	}
 
 	public Camera getActiveCamera(){
 		return camera;
