@@ -42,7 +42,10 @@ public class Goomba {
     }
     
     public void moveSpacecruiserUpwards(){
-    	yCoordinate += moveParam;
+    	for(int i = 0; i<10; i++){
+    		yCoordinate += 0.5f;
+    	}
+    	
     }
     
     public void moveSpacecruiserDownwards(){

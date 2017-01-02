@@ -19,7 +19,7 @@ public abstract class Window {
 	protected long  window;
 
 	/*
-	 * In ScreenSize wird die Größe des Aktuellen Bildschirms abgespeichert.
+	 * In ScreenSize wird die Größe des aktuellen Bildschirms abgespeichert.
 	 * Daraufhin wird die initiale x- und y-Koordinate auf die Mitte des Bildschirmes gesetzt.
 	 * Da aber die linkere obere Ecke des Fensters zentriert wäre und nicht die Mitte dessen, 
 	 * wurde 320 von der x-Koordinate und 240 von der y-Koordinate abgezogen. (was der Hälfte des Fensters entspricht. Siehe MyWindow.java)
@@ -49,7 +49,6 @@ public abstract class Window {
 		window = glfwCreateWindow(width, height, "assignment7", NULL, NULL);
 
 		glfwSetWindowPos(window, xWindowPos, yWindowPos);
-		System.out.println((int)ScreenSize.getHeight()/2);
 
 
 		if(window == NULL){

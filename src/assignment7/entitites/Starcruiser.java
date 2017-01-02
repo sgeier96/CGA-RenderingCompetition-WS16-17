@@ -26,7 +26,7 @@ public class Starcruiser {
     }
 
     private void fillVAO(){
-        vao = OBJLoader.loadObjModel("res/models/Starcruiser.obj");
+        vao = OBJLoader.loadObjModel("res/models/spacecruiser.obj");
     }
 
     public void update(){

@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by Dennis Dubbert on 23.11.16.
  */
-public class SmallStatue {
+public class Asteroid {
 	private VertexArrayObject vao;
 	private Texture texture, texture2;
 	private Material material;
@@ -25,18 +25,18 @@ public class SmallStatue {
 	private ArrayList<Float> xPositions = new ArrayList<Float>();
 	private ArrayList<Float> yPositions = new ArrayList<Float>();
 	private ArrayList<Float> zPositions = new ArrayList<Float>();
-	private ArrayList<Float> cometSizes = new ArrayList<Float>();
+	private ArrayList<Float> AsteroidSizes = new ArrayList<Float>();
 
-	private int cometsDisplayed = 30;
+	private int AsteroidsDisplayed = 30;
 
 
-	public SmallStatue() {
+	public Asteroid() {
 		texture = new Texture("res/images/gold.jpg");
 		texture2 = new Texture("res/images/terrakotta.jpg");
 		material = new Material(15f);
 		fillVAO();
 		randomizeSize();
-		randomizeCometPosition();
+		randomizeAsteroidPosition();
 	}
 
 	private void fillVAO(){
@@ -48,24 +48,24 @@ public class SmallStatue {
 	}
 
 	public void randomizeSize(){
-		for(int i = 0; i < cometsDisplayed; i++){
-			cometSizes.add((float) ThreadLocalRandom.current().nextInt(4, 15));
+		for(int i = 0; i < AsteroidsDisplayed; i++){
+			AsteroidSizes.add((float) ThreadLocalRandom.current().nextInt(4, 15));
 		}
 	}
 
-	public void resizeComet(int cometIndex){
-		cometSizes.set(cometIndex, (float) ThreadLocalRandom.current().nextInt(4, 15));
+	public void resizeAsteroid(int AsteroidIndex){
+		AsteroidSizes.set(AsteroidIndex, (float) ThreadLocalRandom.current().nextInt(4, 15));
 	}
 
 
-	public void rearrangeComet(int cometIndex){
-		xPositions.set(cometIndex, (float) ThreadLocalRandom.current().nextInt(-300, 301));
-		yPositions.set(cometIndex, (float) ThreadLocalRandom.current().nextInt(-300, 301));
-		zPositions.set(cometIndex, (float) ThreadLocalRandom.current().nextInt(-1500, -999));
+	public void rearrangeAsteroid(int AsteroidIndex){
+		xPositions.set(AsteroidIndex, (float) ThreadLocalRandom.current().nextInt(-300, 301));
+		yPositions.set(AsteroidIndex, (float) ThreadLocalRandom.current().nextInt(-300, 301));
+		zPositions.set(AsteroidIndex, (float) ThreadLocalRandom.current().nextInt(-1500, -999));
 	}
 
-	public void randomizeCometPosition(){
-		for(int i = 0; i < cometsDisplayed; i++){
+	public void randomizeAsteroidPosition(){
+		for(int i = 0; i < AsteroidsDisplayed; i++){
 			//Zufallszahlen in einem gewissen Bereich (bspw. [-300;300]) 
 			//+1 weil die Obergrenze exkludiert wird, also nicht als Zufallszahl entstehen kann
 			xPositions.add((float) ThreadLocalRandom.current().nextInt(-300, 301));
@@ -78,25 +78,25 @@ public class SmallStatue {
 		shader.useProgram();
 		material.bind(shader);
 
-		Matrix4f model_matrix = new Matrix4f().translate(xPositions.get(0), yPositions.get(0), zPositions.get(0)).scale(cometSizes.get(0));
+		Matrix4f model_matrix = new Matrix4f().translate(xPositions.get(0), yPositions.get(0), zPositions.get(0)).scale(AsteroidSizes.get(0));
 
 		//Geschwindigkeit der Kometen
 		for(int i = 0; i < zPositions.size(); i++){
 			zPositions.set(i, zPositions.get(i)+4f);
 		}
 		//Aus der nPlane raus -> neu bei -1000f gezeichnet
-		for(int i = 0; i < cometsDisplayed; i++){
+		for(int i = 0; i < AsteroidsDisplayed; i++){
 			if(zPositions.get(i) > 0.01f){
-				rearrangeComet(i);
-				resizeComet(i);
+				rearrangeAsteroid(i);
+				resizeAsteroid(i);
 			}
 		}
 
 		shader.setUniformMat4f("model_matrix", model_matrix);
 		vao.render();
 
-		for (int i = 1; i < cometsDisplayed; i++){
-			model_matrix = new Matrix4f().translate(xPositions.get(i), yPositions.get(i), zPositions.get(i)).scale(cometSizes.get(i));
+		for (int i = 1; i < AsteroidsDisplayed; i++){
+			model_matrix = new Matrix4f().translate(xPositions.get(i), yPositions.get(i), zPositions.get(i)).scale(AsteroidSizes.get(i));
 			shader.setUniformMat4f("model_matrix", model_matrix);
 			vao.render();
 		}
