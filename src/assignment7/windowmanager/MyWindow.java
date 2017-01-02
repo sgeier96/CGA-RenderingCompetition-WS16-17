@@ -27,6 +27,7 @@ public class MyWindow extends Window {
     	 *Möglicherweise muss der Wert sogar noch erhöht werden.
     	 */
         glClearColor(0.01f, 0.01f, 0.01f, 1);
+//    	glClearColor(1, 1, 1, 1);
         glDisable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
         glViewport(0,0,width,height);

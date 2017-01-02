@@ -86,7 +86,7 @@ public class Scene {
 
 		//Das Raumschiff
 		spaceship.render(model_shaderprograms[shader_mode], size);
-		//Stellvertretend für die Kometen
+		//Die Kometen
 		asteroid.render(model_shaderprograms[shader_mode]);
 
 	}

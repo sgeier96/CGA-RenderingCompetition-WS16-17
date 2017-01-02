@@ -27,7 +27,6 @@ public class Spaceship {
 
 
     public Spaceship() {
-    	//Hier noch einfach mit einer goldenen Textur versehen
         texture = new Texture("res/images/gold.jpg");
         material = new Material(15f);
         fillVAO();
@@ -45,7 +44,6 @@ public class Spaceship {
     	for(int i = 0; i<10; i++){
     		yCoordinate += 0.5f;
     	}
-    	
     }
     
     public void moveSpacecruiserDownwards(){
