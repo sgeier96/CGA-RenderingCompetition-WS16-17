@@ -22,10 +22,6 @@ public class Asteroid {
 	private VertexArrayObject vao;
 	private Texture texture, texture2;
 	private Material material;
-	private float rotationAroundX = (float)Math.toRadians((float)Math.random());
-	private float rotationAroundZ = (float)Math.toRadians((float)Math.random());
-	private float rotationAroundY = (float)Math.toRadians((float)Math.random());
-	private float rotationSpeed;
 
 	private ArrayList<Float> xPositions = new ArrayList<Float>();
 	private ArrayList<Float> yPositions = new ArrayList<Float>();
@@ -56,12 +52,12 @@ public class Asteroid {
 
 	public void randomizeSize(){
 		for(int i = 0; i < AsteroidsDisplayed; i++){
-			AsteroidSizes.add((float) ThreadLocalRandom.current().nextLong((long)0.3,(long) 2.0));
+			AsteroidSizes.add((float) (((float)Math.toRadians((float)Math.random())+0.4)*2.4f));
 		}
 	}
 
 	public void resizeAsteroid(int AsteroidIndex){
-		AsteroidSizes.set(AsteroidIndex, (float) ThreadLocalRandom.current().nextLong((long)0.3,(long) 2.0));
+		AsteroidSizes.set(AsteroidIndex, (float) (((float)Math.toRadians((float)Math.random())+0.4)*2.4f));
 	}
 
 
