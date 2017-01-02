@@ -21,9 +21,9 @@ public class Spaceship {
     public float xCoordinate = 0.5f;
     public float yCoordinate = -5f;
     public float moveParam = 5;
-    private float rotationX = 0;
-    private float rotationY = 270;
-    private float rotationZ = 0;
+    private float rotationAroundX = 0;
+    private float rotationAroundY = 270;
+    private float rotationAroundZ = 0;
 
 
     public Spaceship() {
@@ -34,7 +34,7 @@ public class Spaceship {
     }
 
     private void fillVAO(){
-        vao = OBJLoader.loadObjModel("res/models/spacecruiser.obj");
+        vao = OBJLoader.loadObjModel("res/models/spaceship.obj");
     }
 
     public void update(){
@@ -66,7 +66,10 @@ public class Spaceship {
         material.bind(shader);
 
         //Die Transformationen
-        Matrix4f model_matrix = new Matrix4f().translate(xCoordinate, yCoordinate, -(size/2 + 10)).rotateY((float)Math.toRadians(rotationY)).scale(0.4f);
+        Matrix4f model_matrix = new Matrix4f().translate(xCoordinate, yCoordinate, -(size/2 + 10))
+        		.rotateX((float)Math.toRadians(rotationAroundX)).rotateY((float)Math.toRadians(rotationAroundY))
+        		.rotateZ((float)Math.toRadians(rotationAroundZ)).scale(0.4f);
+        
         shader.setUniformMat4f("model_matrix", model_matrix);
         vao.render();
     }

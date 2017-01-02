@@ -42,7 +42,7 @@ public class Asteroid {
 	}
 
 	private void fillVAO(){
-		vao = OBJLoader.loadObjModel("res/models/armadillo.obj");
+		vao = OBJLoader.loadObjModel("res/models/asteroid.obj");
 	}
 
 	public void update(){
@@ -51,12 +51,12 @@ public class Asteroid {
 
 	public void randomizeSize(){
 		for(int i = 0; i < AsteroidsDisplayed; i++){
-			AsteroidSizes.add((float) ThreadLocalRandom.current().nextInt(4, 15));
+			AsteroidSizes.add((float) ThreadLocalRandom.current().nextLong((long)0.3,(long) 2.0));
 		}
 	}
 
 	public void resizeAsteroid(int AsteroidIndex){
-		AsteroidSizes.set(AsteroidIndex, (float) ThreadLocalRandom.current().nextInt(4, 15));
+		AsteroidSizes.set(AsteroidIndex, (float) ThreadLocalRandom.current().nextLong((long)0.3,(long) 2.0));
 	}
 
 
@@ -84,7 +84,7 @@ public class Asteroid {
 
 		//Geschwindigkeit der Kometen
 		for(int i = 0; i < zPositions.size(); i++){
-			zPositions.set(i, zPositions.get(i)+4f);
+			zPositions.set(i, zPositions.get(i)+1f);
 		}
 		//Aus der nPlane raus -> neu bei -1000f gezeichnet
 		for(int i = 0; i < AsteroidsDisplayed; i++){
