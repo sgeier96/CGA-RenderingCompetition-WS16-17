@@ -28,7 +28,7 @@ public class OBJLoader{
 		String line;
 		List<Vector3f> vertices = new ArrayList<Vector3f>();
 		List<Vector3f> normals = new ArrayList<Vector3f>();
-		List<Vector2f> textures = new ArrayList<Vector2f>();
+		List<Vector3f> textures = new ArrayList<Vector3f>();
 		List<Integer> indices = new ArrayList<Integer>();
 
 		float[] verticesArray = null;
@@ -40,7 +40,6 @@ public class OBJLoader{
 			while (true) {
 				line = reader.readLine();
 				String[] currentLine = line.split(" ");
-				System.out.println(currentLine[0]);
 				switch(currentLine[0]){
 				case"v":
 					int i = 1;
@@ -51,8 +50,14 @@ public class OBJLoader{
 				case"vt":
 					i = 1;
 					if(currentLine[1].isEmpty()) i = 2;
-					Vector2f texture = new Vector2f(Float.parseFloat(currentLine[i]), Float.parseFloat(currentLine[i+1]));
-					textures.add(texture);
+					if(currentLine.length == 4){
+						Vector3f texture = new Vector3f(Float.parseFloat(currentLine[i]), Float.parseFloat(currentLine[i+1]), Float.parseFloat(currentLine[i+2]));
+						textures.add(texture);
+					}
+					if(currentLine.length == 3){
+						Vector3f texture = new Vector3f(Float.parseFloat(currentLine[i]), Float.parseFloat(currentLine[i+1]), 0.0f);
+						textures.add(texture);
+					}					
 					continue;
 				case"vn":
 					i = 1;
@@ -68,7 +73,6 @@ public class OBJLoader{
 					continue;
 				}
 				break;
-				
 			}
 
 
@@ -119,14 +123,14 @@ public class OBJLoader{
 	}
 
 	private static void processVertex(String[] vertexData,  List<Integer> indices,
-			List<Vector2f> textures, List<Vector3f> normals,
+			List<Vector3f> textures, List<Vector3f> normals,
 			float[] texturesArray, float[] normalsArray) {
 
 		int currentVertexPointer = Integer.parseInt(vertexData[0]) - 1;
 		indices.add(currentVertexPointer);
 
 		if(!textures.isEmpty()) {
-			Vector2f currentTex = textures.get(Integer.parseInt(vertexData[1]) - 1);
+			Vector3f currentTex = textures.get(Integer.parseInt(vertexData[1]) - 1);
 			texturesArray[currentVertexPointer * 2] = currentTex.x;
 			texturesArray[currentVertexPointer * 2 + 1] = 1 - currentTex.y;
 		}

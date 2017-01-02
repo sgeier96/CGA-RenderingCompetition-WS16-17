@@ -17,8 +17,7 @@ import java.util.ArrayList;
 
 public class Scene {
 	private Asteroid asteroid;
-	private Goomba goomba;
-	private Starcruiser spacecruiser;
+	private Spaceship spaceship;
 	private float fov, nplane, fplane;
 	private Matrix4f projection_matrix;
 	private FlyThroughCamera camera;
@@ -33,8 +32,7 @@ public class Scene {
 		//setup models
 		size = 30;
 		asteroid = new Asteroid();
-		goomba = new Goomba();
-//		spacecruiser = new Starcruiser();
+		spaceship = new Spaceship();
 
 		//setup camera
 		projection_matrix = new Matrix4f();
@@ -86,9 +84,8 @@ public class Scene {
 		model_shaderprograms[shader_mode].setUniformMat4f("projection_matrix", projection_matrix);
 		model_shaderprograms[shader_mode].setUniformMat4f("view_matrix", camera.getView_matrix());
 
-		//Stellvertretend für das Raumschiff
-//		spacecruiser.render(model_shaderprograms[shader_mode], size);
-		goomba.render(model_shaderprograms[shader_mode], size);
+		//Das Raumschiff
+		spaceship.render(model_shaderprograms[shader_mode], size);
 		//Stellvertretend für die Kometen
 		asteroid.render(model_shaderprograms[shader_mode]);
 
@@ -102,8 +99,8 @@ public class Scene {
 		projection_matrix = new Matrix4f().setPerspective((float)Math.toRadians(fov), (float)width/height, nplane, fplane);
 	}
 
-	public Goomba getSpacecruiser(){
-		return goomba;
+	public Spaceship getSpaceship(){
+		return spaceship;
 	}
 
 	public Camera getActiveCamera(){

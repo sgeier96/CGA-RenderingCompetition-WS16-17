@@ -76,25 +76,25 @@ public class MyWindow extends Window {
 
         if(pressedKey == GLFW_KEY_W){
             scene.getActiveCamera().moveCameraUpwards();
-            scene.getSpacecruiser().moveSpacecruiserUpwards();
+            scene.getSpaceship().moveSpacecruiserUpwards();
             moveWindowPos(0, -5);
         }
 
         if(pressedKey == GLFW_KEY_S){
             scene.getActiveCamera().moveCameraDownwards();
-            scene.getSpacecruiser().moveSpacecruiserDownwards();
+            scene.getSpaceship().moveSpacecruiserDownwards();
             moveWindowPos(0, 5);
         }
 
         if(pressedKey == GLFW_KEY_A){
             scene.getActiveCamera().turnCameraLeft();
-            scene.getSpacecruiser().moveSpacecruiserLeft();
+            scene.getSpaceship().moveSpacecruiserLeft();
             moveWindowPos(-5, 0);
         }
 
         if(pressedKey == GLFW_KEY_D){
             scene.getActiveCamera().turnCameraRight();
-            scene.getSpacecruiser().moveSpacecruiserRight();
+            scene.getSpaceship().moveSpacecruiserRight();
             moveWindowPos(5, 0);
         }
 
