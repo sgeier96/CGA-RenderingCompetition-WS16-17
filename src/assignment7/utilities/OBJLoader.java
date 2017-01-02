@@ -40,25 +40,26 @@ public class OBJLoader{
 			while (true) {
 				line = reader.readLine();
 				String[] currentLine = line.split(" ");
+				System.out.println(currentLine[0]);
 				switch(currentLine[0]){
 				case"v":
 					int i = 1;
 					if(currentLine[1].isEmpty()) i = 2;
 					Vector3f vertex = new Vector3f(Float.parseFloat(currentLine[i]), Float.parseFloat(currentLine[i+1]), Float.parseFloat(currentLine[i+2]));
 					vertices.add(vertex);
-					break;
+					continue;
 				case"vt":
 					i = 1;
 					if(currentLine[1].isEmpty()) i = 2;
 					Vector2f texture = new Vector2f(Float.parseFloat(currentLine[i]), Float.parseFloat(currentLine[i+1]));
 					textures.add(texture);
-					break;
+					continue;
 				case"vn":
 					i = 1;
 					if(currentLine[1].isEmpty()) i = 2;
 					Vector3f normal = new Vector3f(Float.parseFloat(currentLine[i]), Float.parseFloat(currentLine[i+1]), Float.parseFloat(currentLine[i+2]));
 					normals.add(normal);
-					break;
+					continue;
 				case"f":
 					texturesArray = new float[vertices.size() *2];
 					normalsArray = new float[vertices.size() *3];
@@ -67,6 +68,7 @@ public class OBJLoader{
 					continue;
 				}
 				break;
+				
 			}
 
 
