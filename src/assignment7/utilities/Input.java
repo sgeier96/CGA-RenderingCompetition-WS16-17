@@ -2,6 +2,7 @@ package assignment7.utilities;
 
 
 import assignment7.windowmanager.Window;
+import assignment7.entitites.Spaceship;
 import org.lwjgl.glfw.*;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -42,8 +43,11 @@ public class Input {
         keyCallback = new GLFWKeyCallback(){
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
-                if(action != GLFW_RELEASE) {
+                if(action != GLFW_RELEASE ) {
                     win.onKeyboard(x, y, key, mods);
+                }
+                if(action == GLFW_RELEASE){
+                Spaceship.rebalanceSpaceship();
                 }
             }
         };
