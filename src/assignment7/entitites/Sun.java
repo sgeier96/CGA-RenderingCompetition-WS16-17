@@ -29,12 +29,12 @@ public class Sun {
 
     }
 
-    public void render(Shaderprogram shader, float size){
+    public void render(Shaderprogram shader, float sunsize){
         shader.useProgram();
         texture.bind(GL_TEXTURE0);
         material.bind(shader);
 
-        Matrix4f model_matrix = new Matrix4f().translate(-10.0f, 8.0f, -(size/2 + 10)).scale(1.0f);
+        Matrix4f model_matrix = new Matrix4f().translate(-650.0f, 480.0f, -1700.0f).scale(50.0f);
         shader.setUniformMat4f("model_matrix", model_matrix);
         vao.render();
     }

@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="libs/JOML/joml-1.8.4.jar"/>
-	<classpathentry kind="lib" path="libs/LWJGL/jar/lwjgl.jar" sourcepath="libs/LWJGL/jar/src.zip">
+	<classpathentry kind="lib" path="/CGA/libs/JOML/joml-1.8.4.jar"/>
+	<classpathentry kind="lib" path="/CGA/libs/LWJGL/jar/lwjgl.jar" sourcepath="/CGA/libs/LWJGL/jar/src.zip">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/CGA-RenderingCompetition-WS16-17/libs/LWJGL/doc/javadoc.zip!/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="CGA-RenderingCompetition-WS16-17/libs/LWJGL/native"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/CGA/libs/LWJGL/doc/javadoc.zip!/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="CGA/libs/LWJGL/native"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
