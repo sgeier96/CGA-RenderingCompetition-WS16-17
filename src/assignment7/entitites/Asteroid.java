@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Asteroid {
 	private VertexArrayObject vao;
-	private Texture texture, texture2;
+	private Texture texture;
 	private Material material;
 
 	public Matrix4f model_matrix;
@@ -34,8 +34,7 @@ public class Asteroid {
 
 
 	public Asteroid() {
-		texture = new Texture("res/images/cubeGround.jpg");
-		texture2 = new Texture("res/images/terrakotta.jpg");
+		texture = new Texture("res/images/concrete.jpg");
 		material = new Material(15f);
 		randomizeSize();
 		randomizeAsteroidPosition();

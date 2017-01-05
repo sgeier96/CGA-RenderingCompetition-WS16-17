@@ -32,7 +32,7 @@ public class Scene {
 		size = 30;
 		asteroid = new Asteroid();
 		spaceship = new Spaceship();
-		sun = new Sun();
+//		sun = new Sun();
 		
 		//setup camera
 		projection_matrix = new Matrix4f();
@@ -59,7 +59,7 @@ public class Scene {
 		
 //______**alte Lichtfarbe und Position
 //		light_position = new Vector3f(0, size+10, -(size-10));
-		light_position = new Vector3f(-650.0f, 480.0f, -1500.0f);
+		light_position = new Vector3f(-650.0f, 700.0f, -1500.0f);
 		light_color = new Vector3f(1.0f, 1.0f, 1.0f);
 		
 		cube_shaderprograms[0].setUniform3f("light_position", light_position);
@@ -96,7 +96,7 @@ public class Scene {
 		//Die Kometen
 		asteroid.render(model_shaderprograms[shader_mode]);
         //Die Sonne		
-		sun.render(model_shaderprograms[shader_mode],sunsize);
+//		sun.render(model_shaderprograms[shader_mode],sunsize);
 		
 	}
 
