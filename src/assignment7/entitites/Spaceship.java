@@ -141,7 +141,7 @@ public class Spaceship {
 		material.bind(shader);
 
 		//Die Transformationen
-		model_matrix = new Matrix4f().translate(xCoordinate, yCoordinate, -(size/2 + 10))
+		model_matrix = new Matrix4f().translate(xCoordinate, yCoordinate, -(size/2 + 20))
 				.rotateZ((float)Math.toRadians(rotationAroundZ)).rotateX((float)Math.toRadians(rotationAroundX)).rotateY((float)Math.toRadians(rotationAroundY))
 				.scale(0.4f);
 

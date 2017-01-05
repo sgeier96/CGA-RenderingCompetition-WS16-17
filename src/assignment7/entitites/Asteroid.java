@@ -23,6 +23,7 @@ public class Asteroid {
 	private Texture texture, texture2;
 	private Material material;
 
+	public Matrix4f model_matrix;
 	private ArrayList<Float> xPositions = new ArrayList<Float>();
 	private ArrayList<Float> yPositions = new ArrayList<Float>();
 	private ArrayList<Float> zPositions = new ArrayList<Float>();
@@ -33,13 +34,14 @@ public class Asteroid {
 
 
 	public Asteroid() {
-		texture = new Texture("res/images/gold.jpg");
+		texture = new Texture("res/images/cubeGround.jpg");
 		texture2 = new Texture("res/images/terrakotta.jpg");
 		material = new Material(15f);
-		fillVAO();
 		randomizeSize();
 		randomizeAsteroidPosition();
 		randomizeRotationAsteroid();
+		fillVAO();
+		
 	}
 
 	private void fillVAO(){
@@ -52,12 +54,12 @@ public class Asteroid {
 
 	public void randomizeSize(){
 		for(int i = 0; i < AsteroidsDisplayed; i++){
-			AsteroidSizes.add((float) (((float)Math.toRadians((float)Math.random())+0.4)*2.4f));
+			AsteroidSizes.add((float) (((float)Math.toRadians((float)Math.random())+0.4)*15f));
 		}
 	}
 
 	public void resizeAsteroid(int AsteroidIndex){
-		AsteroidSizes.set(AsteroidIndex, (float) (((float)Math.toRadians((float)Math.random())+0.4)*2.4f));
+		AsteroidSizes.set(AsteroidIndex, (float) (((float)Math.toRadians((float)Math.random())+0.4)*15f));
 	}
 
 
@@ -96,14 +98,15 @@ public class Asteroid {
 
 	public void render(Shaderprogram shader){
 		shader.useProgram();
+		texture.bind(GL_TEXTURE0);
 		material.bind(shader);
 
-		Matrix4f model_matrix = new Matrix4f().translate(xPositions.get(0), yPositions.get(0), zPositions.get(0)).scale(AsteroidSizes.get(0))
+		model_matrix = new Matrix4f().translate(xPositions.get(0), yPositions.get(0), zPositions.get(0)).scale(AsteroidSizes.get(0))
 				.rotateX(rotations.get(0)).rotateY(rotations.get(1)).rotateZ(rotations.get(2));
 		rotateAsteroid();
 		//Geschwindigkeit der Kometen
 		for(int i = 0; i < zPositions.size(); i++){
-			zPositions.set(i, zPositions.get(i)+1f);
+			zPositions.set(i, zPositions.get(i)+3f);
 		}
 		
 		//Aus der nPlane raus -> neu bei -1000f gezeichnet
@@ -113,15 +116,17 @@ public class Asteroid {
 				resizeAsteroid(i);
 			}
 		}
-
-		shader.setUniformMat4f("model_matrix", model_matrix);
-		vao.render();
-
+		
 		for (int i = 1; i < AsteroidsDisplayed; i++){
 			model_matrix = new Matrix4f().translate(xPositions.get(i), yPositions.get(i), zPositions.get(i)).scale(AsteroidSizes.get(i))
 					.rotateX(rotations.get(i*3)).rotateY(rotations.get(i*3+1)).rotateZ(rotations.get(i*3+2));
 			shader.setUniformMat4f("model_matrix", model_matrix);
 			vao.render();
 		}
+
+		shader.setUniformMat4f("model_matrix", model_matrix);
+		vao.render();
+
+		
 	}
 }

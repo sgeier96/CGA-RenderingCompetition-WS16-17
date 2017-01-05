@@ -26,8 +26,8 @@ public class MyWindow extends Window {
 		/*extra auf 0.01f gesetzt, da die Sterne selbst noch licht abgeben und damit soll das ganze vereinfacht werden.
 		 *Möglicherweise muss der Wert sogar noch erhöht werden.
 		 */
-		glClearColor(0.01f, 0.01f, 0.01f, 1);
-		//    	glClearColor(1, 1, 1, 1);
+//		glClearColor(0.01f, 0.01f, 0.01f, 1);
+		    	glClearColor(1, 1, 1, 1);
 		glDisable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
 		glViewport(0,0,width,height);

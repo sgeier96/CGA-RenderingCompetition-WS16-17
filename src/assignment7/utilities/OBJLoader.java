@@ -2,7 +2,6 @@ package assignment7.utilities;
 
 
 import assignment7.graphics.VertexArrayObject;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import java.io.BufferedReader;
@@ -30,6 +29,7 @@ public class OBJLoader{
 		List<Vector3f> normals = new ArrayList<Vector3f>();
 		List<Vector3f> textures = new ArrayList<Vector3f>();
 		List<Integer> indices = new ArrayList<Integer>();
+		ArrayList<String[]> facesArrayList = new ArrayList<String[]>();
 
 		float[] verticesArray = null;
 		float[] normalsArray = null;
@@ -37,8 +37,8 @@ public class OBJLoader{
 		int[] indicesArray = null;
 
 		try {
-			while (true) {
-				line = reader.readLine();
+			while ((line = reader.readLine()) !=null) {
+//				line = reader.readLine();
 				String[] currentLine = line.split(" ");
 				switch(currentLine[0]){
 				case"v":
@@ -66,10 +66,18 @@ public class OBJLoader{
 					normals.add(normal);
 					continue;
 				case"f":
-					texturesArray = new float[vertices.size() *2];
+					texturesArray = new float[vertices.size() *3];
 					normalsArray = new float[vertices.size() *3];
 					break;
+				case "s":
+					System.out.println("s found");
+					continue;
+				case "usemtl":
+					System.out.println("usemtl found");
+					if(!reader.ready())break;
+					continue;
 				default:
+					if(!reader.ready())break;
 					continue;
 				}
 				break;
@@ -81,19 +89,35 @@ public class OBJLoader{
 					line = reader.readLine();
 					continue;
 				}
+				
 				String[] currentLine = line.split(" ");
 				int i = 1;
 				if(currentLine[1].isEmpty()) i = 2;
-				String[] vertex1 = currentLine[i].split("/");
-				String[] vertex2 = currentLine[i+1].split("/");
-				String[] vertex3 = currentLine[i+2].split("/");
+				if(currentLine.length == 4){
+					String[] vertex1 = currentLine[i].split("/");
+					String[] vertex2 = currentLine[i+1].split("/");
+					String[] vertex3 = currentLine[i+2].split("/");
 
-				processVertex(vertex1, indices, textures, normals, texturesArray, normalsArray);
-				processVertex(vertex2, indices, textures, normals, texturesArray, normalsArray);
-				processVertex(vertex3, indices, textures, normals, texturesArray, normalsArray);
+					processVertex(vertex1, indices, textures, normals, texturesArray, normalsArray);
+					processVertex(vertex2, indices, textures, normals, texturesArray, normalsArray);
+					processVertex(vertex3, indices, textures, normals, texturesArray, normalsArray);
+				}
+
+				if(currentLine.length == 5){
+					String[] vertex1 = currentLine[i].split("/");
+					String[] vertex2 = currentLine[i+1].split("/");
+					String[] vertex3 = currentLine[i+2].split("/");
+					String[] vertex4 = currentLine[i+3].split("/");
+
+					processVertex(vertex1, indices, textures, normals, texturesArray, normalsArray);
+					processVertex(vertex2, indices, textures, normals, texturesArray, normalsArray);
+					processVertex(vertex3, indices, textures, normals, texturesArray, normalsArray);
+					processVertex(vertex4, indices, textures, normals, texturesArray, normalsArray);
+				}
 
 				line = reader.readLine();
 			}
+			
 			reader.close();
 
 		} catch (Exception e) {
@@ -130,12 +154,13 @@ public class OBJLoader{
 		indices.add(currentVertexPointer);
 
 		if(!textures.isEmpty()) {
-			Vector3f currentTex = textures.get(Integer.parseInt(vertexData[1]) - 1);
-			texturesArray[currentVertexPointer * 2] = currentTex.x;
-			texturesArray[currentVertexPointer * 2 + 1] = 1 - currentTex.y;
+			Vector3f currentTex = textures.get(Integer.parseInt(vertexData[1]) -1);
+			texturesArray[currentVertexPointer * 3] = currentTex.x;
+			texturesArray[currentVertexPointer * 3 + 1] = 1 - currentTex.y;
+			texturesArray[currentVertexPointer * 3 + 2] = 2 - currentTex.z;
 		}
 
-		Vector3f currentNorm = normals.get(Integer.parseInt(vertexData[2]) - 1);
+		Vector3f currentNorm = normals.get(Integer.parseInt(vertexData[2]) -1);
 		normalsArray[currentVertexPointer * 3] = currentNorm.x;
 		normalsArray[currentVertexPointer * 3 + 1] = currentNorm.y;
 		normalsArray[currentVertexPointer * 3 + 2] = currentNorm.z;
