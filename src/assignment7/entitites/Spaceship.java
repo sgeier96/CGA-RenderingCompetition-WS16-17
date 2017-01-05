@@ -9,9 +9,6 @@ import org.joml.Matrix4f;
 
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 
-/**
- * Created by Dennis Dubbert on 24.11.16.
- */
 public class Spaceship {
 	private VertexArrayObject vao;
 	private Texture texture;
@@ -27,7 +24,8 @@ public class Spaceship {
 
 
 	public Spaceship() {
-		texture = new Texture("res/images/gold.jpg");
+		texture = new Texture("res/images/spaceship_red.jpg");
+
 		material = new Material(15f);
 		fillVAO();
 	}

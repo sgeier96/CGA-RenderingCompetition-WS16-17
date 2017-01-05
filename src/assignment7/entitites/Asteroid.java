@@ -34,7 +34,7 @@ public class Asteroid {
 
 
 	public Asteroid() {
-		texture = new Texture("res/images/cubeGround.jpg");
+		texture = new Texture("res/images/asteroid.jpg");
 		texture2 = new Texture("res/images/terrakotta.jpg");
 		material = new Material(15f);
 		randomizeSize();
