@@ -16,6 +16,7 @@ public class Scene {
 	private Spaceship spaceship;
 	private Sun sun;
 	private Star star;
+	private CornellBox box;
 	
 	private float sunsize = 1000;
 	
@@ -36,6 +37,7 @@ public class Scene {
 		spaceship = new Spaceship();
 		sun = new Sun();
 		star = new Star();
+	    box = new CornellBox(1901f);
 		
 		//setup camera
 		projection_matrix = new Matrix4f();
@@ -43,7 +45,7 @@ public class Scene {
 		fov = 40;
 		nplane = 0.01f;
 //______** fPlane geändert da die Asteroiden hinter der Sonne auftauchen.
-		fplane = 2000;
+		fplane = 4000f;
 
 		//setup shader
 		shader_mode = 0;
@@ -102,6 +104,7 @@ public class Scene {
 		sun.render(model_shaderprograms[shader_mode],sunsize);
 		//Die Sterne
 		star.render(model_shaderprograms[shader_mode]);
+		box.render(cube_shaderprograms[shader_mode]);
 		
 	}
 

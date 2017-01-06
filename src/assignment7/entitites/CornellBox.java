@@ -53,7 +53,7 @@ public class CornellBox {
                 0.577350f, 0.577350f, 0.577350f
         };
 
-        texture = new Texture(new String[]{"res/images/cubeSides.png","res/images/cubeSides.png","res/images/cubeTop.png","res/images/cubeBot.png","res/images/cubeSides.png","res/images/cubeSides.png"});
+        texture = new Texture(new String[]{"res/images/weltraum.png","res/images/weltraum.png","res/images/weltraum.png","res/images/weltraum.png","res/images/weltraum.png","res/images/weltraum.png"});
 
         material = new Material(5);
 
@@ -78,7 +78,7 @@ public class CornellBox {
         texture.bindCube(GL_TEXTURE0);
         material.bind(shader);
 
-        Matrix4f model_matrix = new Matrix4f().translate(0, size-10, -(size-10));
+        Matrix4f model_matrix = new Matrix4f().translate(0, 300f, -1900f);
         shader.setUniformMat4f("model_matrix", model_matrix);
         vao.render();
     }
