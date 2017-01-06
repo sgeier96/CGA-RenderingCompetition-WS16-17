@@ -15,6 +15,8 @@ public class Scene {
 	private Asteroid asteroid;
 	private Spaceship spaceship;
 	private Sun sun;
+	private Star star;
+	
 	private float sunsize = 1000;
 	
 	private float fov, nplane, fplane;
@@ -33,6 +35,7 @@ public class Scene {
 		asteroid = new Asteroid();
 		spaceship = new Spaceship();
 		sun = new Sun();
+		star = new Star();
 		
 		//setup camera
 		projection_matrix = new Matrix4f();
@@ -97,6 +100,8 @@ public class Scene {
 		asteroid.render(model_shaderprograms[shader_mode]);
         //Die Sonne		
 		sun.render(model_shaderprograms[shader_mode],sunsize);
+		//Die Sterne
+		star.render(model_shaderprograms[shader_mode]);
 		
 	}
 
