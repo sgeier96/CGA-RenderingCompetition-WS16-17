@@ -9,7 +9,6 @@ import assignment7.entitites.Scene;
 
 
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 
@@ -35,7 +34,7 @@ public class Asteroid {
 
 
 	public Asteroid() {
-		texture = new Texture("res/images/concrete.jpg");
+		texture = new Texture("res/images/asteroid.jpg");
 		material = new Material(15f);
 		randomizeSize();
 		randomizeAsteroidPosition();

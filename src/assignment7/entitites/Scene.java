@@ -12,6 +12,9 @@ public class Scene {
 	private Asteroid asteroid;
 	private Spaceship spaceship;
 	private Sun sun;
+	private Star star;
+	private CornellBox box;
+	
 	private float sunsize = 1000;
 	private static int amountOfCollisions = 0;
 
@@ -30,15 +33,16 @@ public class Scene {
 		size = 30;
 		asteroid = new Asteroid();
 		spaceship = new Spaceship();
-//		sun = new Sun();
-
+		sun = new Sun();
+		star = new Star();
+	    box = new CornellBox(1901f);
 		//setup camera
 		projection_matrix = new Matrix4f();
 		camera = new FlyThroughCamera();
 		fov = 40;
 		nplane = 0.01f;
 //______** fPlane geändert da die Asteroiden hinter der Sonne auftauchen.
-		fplane = 2000;
+		fplane = 4000f;
 
 		//setup shader
 		shader_mode = 0;
@@ -94,7 +98,11 @@ public class Scene {
 		//Die Kometen
 		asteroid.render(model_shaderprograms[shader_mode]);
         //Die Sonne		
-//		sun.render(model_shaderprograms[shader_mode],sunsize);
+		sun.render(model_shaderprograms[shader_mode],sunsize);
+		//Die Sterne
+		star.render(model_shaderprograms[shader_mode]);
+		box.render(cube_shaderprograms[shader_mode]);
+
 		
 	}
 

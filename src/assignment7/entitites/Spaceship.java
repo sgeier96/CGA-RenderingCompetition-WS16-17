@@ -9,12 +9,9 @@ import org.joml.Matrix4f;
 
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 
-/**
- * Created by Dennis Dubbert on 24.11.16.
- */
 public class Spaceship {
 	private VertexArrayObject vao;
-	private Texture colorTexture, illuminationTexture;
+	private Texture texture;
 	private Material material;
 
 	public Matrix4f model_matrix;
@@ -27,8 +24,8 @@ public class Spaceship {
 
 
 	public Spaceship() {
-		colorTexture = new Texture("res/images/spaceship_color.png");
-		illuminationTexture = new Texture("res/images/spaceship_illumination.png");
+		texture = new Texture("res/images/spaceship_red.jpg");
+
 		material = new Material(15f);
 		fillVAO();
 	}
@@ -138,7 +135,7 @@ public class Spaceship {
 
 	public void render(Shaderprogram shader, float size){
 		shader.useProgram();
-		colorTexture.bind(GL_TEXTURE0);
+		texture.bind(GL_TEXTURE0);
 		material.bind(shader);
 
 		//Die Transformationen
