@@ -5,7 +5,8 @@ import assignment7.graphics.Shaderprogram;
 import assignment7.graphics.Texture;
 import assignment7.graphics.VertexArrayObject;
 import assignment7.utilities.OBJLoader;
-import assignment7.utilities.OBJLoaderBACKUPORIGINAL;
+import assignment7.entitites.Scene;
+
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -94,6 +95,14 @@ public class Asteroid {
 			rotations.set(i*3+2, (rotations.get(i*3+2) + (float)Math.toRadians((float)Math.random()/6)) % 360);
 		}
 	}
+	
+	public void checkCollision(int asteroidIndex){
+		if((xPositions.get(asteroidIndex) > Spaceship.xCoordinate-40 && xPositions.get(asteroidIndex) < Spaceship.xCoordinate+40) 
+		&& (yPositions.get(asteroidIndex) > Spaceship.yCoordinate-20 && yPositions.get(asteroidIndex) < Spaceship.yCoordinate+20)){
+			Scene.increaseAmountOfCollisions();
+			System.out.println("Collisions: " + Scene.getAmountOfCollisions() + " / 5");
+		}
+	}
 
 	public void render(Shaderprogram shader){
 		shader.useProgram();
@@ -111,6 +120,7 @@ public class Asteroid {
 		//Aus der nPlane raus -> neu bei -1000f gezeichnet
 		for(int i = 0; i < AsteroidsDisplayed; i++){
 			if(zPositions.get(i) > 0.01f){
+				checkCollision(i);
 				rearrangeAsteroid(i);
 				resizeAsteroid(i);
 			}

@@ -69,13 +69,6 @@ public class OBJLoader{
 					texturesArray = new float[vertices.size() *3];
 					normalsArray = new float[vertices.size() *3];
 					break;
-				case "s":
-					System.out.println("s found");
-					continue;
-				case "usemtl":
-					System.out.println("usemtl found");
-					if(!reader.ready())break;
-					continue;
 				default:
 					if(!reader.ready())break;
 					continue;
@@ -139,7 +132,7 @@ public class OBJLoader{
 
 		VertexArrayObject vao = new VertexArrayObject();
 		vao.bindData(verticesArray, 0, 3);
-		vao.bindData(texturesArray, 1, 2);
+		vao.bindData(texturesArray, 1, 3);
 		vao.bindData(normalsArray, 2, 3);
 		vao.bindIndices(indicesArray);
 		OpenGLUtils.checkForOpenGLError();

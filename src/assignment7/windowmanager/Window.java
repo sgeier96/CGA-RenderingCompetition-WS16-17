@@ -1,5 +1,6 @@
 package assignment7.windowmanager;
 
+import assignment7.entitites.Scene;
 import assignment7.utilities.Input;
 import org.lwjgl.opengl.GL;
 
@@ -45,7 +46,7 @@ public abstract class Window {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
+		
 		window = glfwCreateWindow(width, height, "assignment7", NULL, NULL);
 
 		glfwSetWindowPos(window, xWindowPos, yWindowPos);
@@ -90,6 +91,11 @@ public abstract class Window {
 	}
 
 	private void render(){
+		if(Scene.getAmountOfCollisions() == 5){
+			glfwDestroyWindow(window);
+			glfwTerminate();
+			System.exit(1);
+		}
 		onRender();
 		glfwSwapBuffers(window);
 	}

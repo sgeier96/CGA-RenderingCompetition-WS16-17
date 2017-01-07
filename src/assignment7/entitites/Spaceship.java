@@ -14,12 +14,12 @@ import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
  */
 public class Spaceship {
 	private VertexArrayObject vao;
-	private Texture texture;
+	private Texture colorTexture, illuminationTexture;
 	private Material material;
 
 	public Matrix4f model_matrix;
-	public float xCoordinate = 0.5f;
-	public float yCoordinate = -5f;
+	public static float xCoordinate = 0.5f;
+	public static float yCoordinate = -5f;
 	public float moveParam = 0.5f;
 	private static float rotationAroundX = 0;
 	private float rotationAroundY = 270;
@@ -27,7 +27,8 @@ public class Spaceship {
 
 
 	public Spaceship() {
-		texture = new Texture("res/images/gold.jpg");
+		colorTexture = new Texture("res/images/spaceship_color.png");
+		illuminationTexture = new Texture("res/images/spaceship_illumination.png");
 		material = new Material(15f);
 		fillVAO();
 	}
@@ -137,7 +138,7 @@ public class Spaceship {
 
 	public void render(Shaderprogram shader, float size){
 		shader.useProgram();
-		texture.bind(GL_TEXTURE0);
+		colorTexture.bind(GL_TEXTURE0);
 		material.bind(shader);
 
 		//Die Transformationen

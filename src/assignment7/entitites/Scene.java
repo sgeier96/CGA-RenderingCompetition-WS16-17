@@ -7,16 +7,14 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE1;
-
-import java.util.ArrayList;
 
 public class Scene {
 	private Asteroid asteroid;
 	private Spaceship spaceship;
 	private Sun sun;
 	private float sunsize = 1000;
-	
+	private static int amountOfCollisions = 0;
+
 	private float fov, nplane, fplane;
 	private Matrix4f projection_matrix;
 	private FlyThroughCamera camera;
@@ -33,7 +31,7 @@ public class Scene {
 		asteroid = new Asteroid();
 		spaceship = new Spaceship();
 //		sun = new Sun();
-		
+
 		//setup camera
 		projection_matrix = new Matrix4f();
 		camera = new FlyThroughCamera();
@@ -118,5 +116,13 @@ public class Scene {
 
 	public void changeShader(){
 		shader_mode = ++shader_mode % 2;
+	}
+
+	public static int getAmountOfCollisions() {
+		return amountOfCollisions;
+	}
+
+	public static void increaseAmountOfCollisions() {
+		amountOfCollisions++;
 	}
 }
